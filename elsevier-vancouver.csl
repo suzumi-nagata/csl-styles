@@ -13,7 +13,7 @@
     </author>
     <category citation-format="numeric"/>
     <summary>A style for some Elsevier journals, resembles Vancouver style</summary>
-    <updated>2019-10-15T22:06:38+00:00</updated>
+    <updated>2026-10-18T02:32:15+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <macro name="author">
@@ -67,10 +67,12 @@
       <if variable="DOI">
         <text variable="DOI" prefix="https://doi.org/"/>
       </if>
-      <else-if type="webpage post-weblog" match="any">
+      <!-- URL captures are not always typed as webpage (e.g. BibTeX @misc),
+           so show the URL and access date for any item without a DOI. -->
+      <else-if variable="URL">
+        <text variable="URL"/>
         <choose>
-          <if variable="URL">
-            <text variable="URL"/>
+          <if variable="accessed">
             <group prefix=" (" suffix=")" delimiter=" ">
               <text term="accessed"/>
               <date variable="accessed" form="text"/>
